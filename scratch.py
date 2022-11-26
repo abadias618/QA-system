@@ -31,25 +31,25 @@ def manually_label_question(q):
 
     q_type = ""
     for w in q.lower().split():
-        if w in factoid_words:
-            q_type = "factoid"
-            break
-        if w in choice_words:
-            q_type = "choice"
-            break
-        if w in causal_words:
-            q_type = "causal"
-            break
-        if w in confirmation_words:
-            q_type = "confirmation"
-            break
-        if w in hypothetical_words:
-            q_type = "hypothetical"
-        if w in list_words:
-            q_type = "list"
-            break
+        # if w in choice_words:
+        #     q_type = "choice"
+        #     break
+        # elif w in causal_words:
+        #     q_type = "causal"
+        #     break
+        # elif w in confirmation_words:
+        #     q_type = "confirmation"
+        #     break
+        # elif w in hypothetical_words:
+        #     q_type = "hypothetical"
+        # elif w in list_words:
+        #     q_type = "list"
+        #     break
         if w in quantity_words:
             q_type = "quantity"
+            break
+        elif w in factoid_words:
+            q_type = "factoid"
             break
     return q_type
 
@@ -86,21 +86,21 @@ for q in questions[0:1]:
     if manually_label_question(q) == "factoid":
         grammar_str = grammars.FACTOID
         q_type = "factoid"
-    elif manually_label_question(q) == "choice":
-        grammar_str = grammars.CHOICE
-        q_type = "choice"
-    elif manually_label_question(q) == "causal":
-        grammar_str = grammars.CAUSAL
-        q_type = "causal"
-    elif manually_label_question(q) == "confirmation":
-        grammar_str = grammars.CONFIRMATION
-        q_type = "confirmation"
-    elif manually_label_question(q) == "hypothetical":
-        grammar_str = grammars.HYPOTHETICAL
-        q_type = "hypothetical"
-    elif manually_label_question(q) == "list":
-        grammar_str = grammars.LIST
-        q_type = "list"
+    # elif manually_label_question(q) == "choice":
+    #     grammar_str = grammars.CHOICE
+    #     q_type = "choice"
+    # elif manually_label_question(q) == "causal":
+    #     grammar_str = grammars.CAUSAL
+    #     q_type = "causal"
+    # elif manually_label_question(q) == "confirmation":
+    #     grammar_str = grammars.CONFIRMATION
+    #     q_type = "confirmation"
+    # elif manually_label_question(q) == "hypothetical":
+    #     grammar_str = grammars.HYPOTHETICAL
+    #     q_type = "hypothetical"
+    # elif manually_label_question(q) == "list":
+    #     grammar_str = grammars.LIST
+    #     q_type = "list"
     elif manually_label_question(q) == "quantity":
         grammar_str = grammars.QUANTITY
         q_type = "quantity"
@@ -112,7 +112,7 @@ for q in questions[0:1]:
         grammar_str += convert_universal_tag_to_CFG_format(t[1]) + " -> " + str("\'"+ t[0] +"\'") + "\n\t"
 
     grammar = CFG.fromstring(grammar_str)
-    print("GRAMMAR",grammar)
+    #print("GRAMMAR",grammar)
     rd = RecursiveDescentParser(grammar)
     print("q_type",q_type)
     print("t_q",tokenized_q)
