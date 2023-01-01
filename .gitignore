@@ -1,5 +1,9 @@
 #LOCAL
 saved_models/
+mysubmission/
+mysubmission2/
+mysubmission3/
+nlp-env/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
