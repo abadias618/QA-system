@@ -6,9 +6,15 @@ tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
 model = AutoModel.from_pretrained("bert-base-uncased")
 
 # example input sentence
-text = "I'm excited to use bert for my project"
+text = "alphabet"
 
 # encode and pass through the BERT
-encoded_input = tokenizer(text, return_tensors='pt')
+#print("t vocab",tokenizer.vocab)
+#print("t vocab",tokenizer)
+print("t vocab size",tokenizer.vocab_size)
+encoded_input = tokenizer(text, return_tensors="pt")
+print("encoded_input=",encoded_input)
 output = model(**encoded_input)
-print("output=",output)
+print("output=",output.last_hidden_state.shape)
+print("output=",output.pooler_output.shape)
+print("output=",output.pooler_output)
